@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/waves-music/static/css/main.e06631df.chunk.css",
+    "main.js": "/waves-music/static/js/main.7f7e0da1.chunk.js",
+    "main.js.map": "/waves-music/static/js/main.7f7e0da1.chunk.js.map",
+    "runtime-main.js": "/waves-music/static/js/runtime-main.069208cb.js",
+    "runtime-main.js.map": "/waves-music/static/js/runtime-main.069208cb.js.map",
+    "static/js/2.f047efdb.chunk.js": "/waves-music/static/js/2.f047efdb.chunk.js",
+    "static/js/2.f047efdb.chunk.js.map": "/waves-music/static/js/2.f047efdb.chunk.js.map",
+    "index.html": "/waves-music/index.html",
+    "static/css/main.e06631df.chunk.css.map": "/waves-music/static/css/main.e06631df.chunk.css.map",
+    "static/js/2.f047efdb.chunk.js.LICENSE.txt": "/waves-music/static/js/2.f047efdb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.069208cb.js",
+    "static/js/2.f047efdb.chunk.js",
+    "static/css/main.e06631df.chunk.css",
+    "static/js/main.7f7e0da1.chunk.js"
+  ]
+}
