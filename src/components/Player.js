@@ -28,13 +28,13 @@ const Player = ({currentSong, setCurrentSong, isPlaying, setIsPlaying, songInfo,
         }
         if(direction === "skip-back"){ 
             if((currentIndex-1) % songs.length === -1) {
-                setCurrentSong(songs[songs.length-1])
+                await setCurrentSong(songs[songs.length-1]);
                 if(isPlaying) {audioRef.current.play()}
                 return;
             }
-            setCurrentSong(songs[(currentIndex-1) % songs.length])
+            await setCurrentSong(songs[(currentIndex-1) % songs.length])
         }
-        if(isPlaying) {audioRef.current.play();}
+        if(isPlaying) {audioRef.current.play()}
     }
     const animationPercentage = (songInfo.currentTime / songInfo.duration) * 100;
     return (

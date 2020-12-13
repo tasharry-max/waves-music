@@ -6,7 +6,7 @@ import Library from "./components/Library";
 import Nav from "./components/Nav";
 //import util
 import chillpop from "./data";
-import {playAudio} from "./util";
+
 
 function App() {
   const [songs, setSongs] = useState(chillpop());
@@ -23,8 +23,13 @@ const timeUpdateHandler = (e) => {
     const duration = e.target.duration;
     setSongInfo({...songInfo, currentTime: current, duration:duration})
 }
+const songEndHandler = async () => {
+  let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+  await setCurrentSong(songs[(currentIndex+1) % songs.length]);
+  if(isPlaying) {audioRef.current.play()}
+}
   return (
-    <div className="App">
+    <div className={`App ${libraryStatus ? 'library-active' : ''}`}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus}/>
       <Song currentSong={currentSong}/>
       <Player
@@ -50,7 +55,10 @@ const timeUpdateHandler = (e) => {
        onLoadedMetadata={timeUpdateHandler}  
        onTimeUpdate={timeUpdateHandler}
        ref={audioRef} 
-       src={currentSong.audio}>
+       src={currentSong.audio}
+       onEnded={songEndHandler}
+       >
+         
        </audio>
     </div>
   );
