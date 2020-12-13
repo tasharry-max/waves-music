@@ -8,17 +8,39 @@
 .time-control {
     width: 50%;
     display:flex;
+    padding:1rem;
     input {
         width: 100%;
-        padding: 1rem 0;
-        &::-webkit-slider-thumb{
-            cursor: pointer;
-            padding:0;
+        appearance: none;
+        background-color: transparent;
+        &:focus{
+            outline: none;
         }
     }
-    p {
-        padding: 1rem;
+    p {padding: 0 1rem;}
+    input[type=range]::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 1rem;
     }
+}
+.track {
+    background: lightblue;
+    width: 100%;
+    height: 1rem;
+    position: relative;
+    border-radius: 1rem;
+    overflow:hidden;
+  }
+.animate-track {
+    background: rgb(204,204,204);
+    width:100%;
+    height:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0%);
+    pointer-events: none;
 }
 
 .play-control {
@@ -26,8 +48,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    width:30%;
+    width: 40%;
     svg {
-        cursor:pointer;
+      cursor: pointer;
     }
-}
+  }
