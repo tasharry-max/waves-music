@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause, faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({currentSong, setCurrentSong, isPlaying, setIsPlaying, songInfo, setSongInfo, audioRef, songs, setSongs}) => {
+const Player = ({currentSong, setCurrentSong, id, isPlaying, setIsPlaying, songInfo, setSongInfo, audioRef, songs, setSongs}) => {
     const getTime = (time) => {
         return (
             Math.floor(time/60) + ":" + ("0" + Math.floor(time%60)).slice(-2)
@@ -21,10 +21,19 @@ const Player = ({currentSong, setCurrentSong, isPlaying, setIsPlaying, songInfo,
             setIsPlaying(!isPlaying);
         }
     }
+    const activeLibrarySong = (nextPrev) => {
+        const newSongs = songs.map((song)=> {
+            if(song.id === nextPrev.id) { return {...song, active:true}}
+            else { return {...song, active:false}}
+        })
+        setSongs(newSongs);
+    }
     const skipTrackHandler = async (direction) => {
         let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
+     
         if(direction === "skip-forward") { 
-            await setCurrentSong(songs[(currentIndex+1) % songs.length])
+            await setCurrentSong(songs[(currentIndex+1) % songs.length]);
+            activeLibrarySong(songs[(currentIndex+1) % songs.length])
         }
         if(direction === "skip-back"){ 
             if((currentIndex-1) % songs.length === -1) {
@@ -34,6 +43,7 @@ const Player = ({currentSong, setCurrentSong, isPlaying, setIsPlaying, songInfo,
             }
             await setCurrentSong(songs[(currentIndex-1) % songs.length])
         }
+        
         if(isPlaying) {audioRef.current.play()}
     }
     const animationPercentage = (songInfo.currentTime / songInfo.duration) * 100;
